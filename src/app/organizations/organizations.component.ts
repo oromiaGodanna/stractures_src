@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Organization } from './organization.model';
+import { OrganizationService } from './organization.service';
 @Component({
   selector: 'app-organizations',
   templateUrl: './organizations.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrganizationsComponent implements OnInit {
 
-  constructor() { }
+  organization_list : Organization[];
+  constructor(private organizationService: OrganizationService) { }
 
   ngOnInit() {
   }
 
+  getOrganizations(): void{
+    this.organizationService.getOrganizations().subscribe(organization_list => this.organization_list = organization_list)
+  }
 }
