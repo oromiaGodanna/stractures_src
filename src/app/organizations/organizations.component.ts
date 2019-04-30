@@ -9,9 +9,11 @@ import { OrganizationService } from './organization.service';
 export class OrganizationsComponent implements OnInit {
 
   organization_list : Organization[];
+  
   constructor(private organizationService: OrganizationService) { }
 
   ngOnInit() {
+    this.getOrganizations();
   }
 
   getOrganizations(): void{
