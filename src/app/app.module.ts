@@ -15,6 +15,7 @@ import { DepartmentsListComponent } from './departments/departments-list/departm
 import { DepartmentDetailComponent } from './departments/department-detail/department-detail.component';
 import { DepartmentNewComponent } from './departments/department-new/department-new.component';
 import { DepartmentAlterComponent } from './departments/department-alter/department-alter.component';
+import { HeaderComponent } from './header/header.component';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     DepartmentsListComponent,
     DepartmentDetailComponent,
     DepartmentNewComponent,
-    DepartmentAlterComponent
+    DepartmentAlterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
