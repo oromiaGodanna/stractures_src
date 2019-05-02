@@ -1,37 +1,23 @@
-<!-- <div class="row">
-    <div class="col-xs-8">
-        <div class="list-group-item clearfix">Department Name <span>Description</span></div>
-        <div class="list-group-item clearfix" *ngFor="let department of depts" 
->
-          <a routerLink="/detail/{{department.name}}" class="list-group-item-heading">
-            {{ department.name }}
-          </a>
-          <span>{{department.description}}</span>
-    </div>
-    <button routerLink="/new">New Department</button>
-</div> -->
-
-
-<div nz-row>
-    <div nz-col nzSpan="8">
-        <button nz-button nzType="primary" routerLink="/new">New Department</button>
-
-    </div>
-    <div nz-col nzSpan="8"></div>
-    <div nz-col nzSpan="8">
-        <nz-radio-group [(ngModel)]="tableView">
+<div nz-row nzSpan="24" style="margin-top: 15px;">
+  <div nz-col nzSpan="4">
+      <h3>Departments</h3>
+      <h6>List of Departments</h6>
+  </div>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8">
+    <nz-radio-group [(ngModel)]="tableView"  style="margin-top: 25px;">
             <label nz-radio nzValue= true>Table View</label>
             <label nz-radio nzValue= false>Tree View</label>
 
           </nz-radio-group>
-          
-    </div>
-    <!-- <p>{{tableView}}</p> -->
   </div>
-  <!-- <div *ngIf="tableView; then tableViewBlock else treeViewBlock">
+  <div nz-col nzSpan="4">
+    <div></div>
+      <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;" [routerLink]="['/newDepartment']" routerLinkActive="active">New Department</button>
 
-  </div> -->
-<!-- <div *ngIf="tableView; else treeViewBlock"> -->
+  </div>
+
+
   <nz-table #basicTable [nzData]="orgDepts">
       <thead>
         <tr>
@@ -45,9 +31,9 @@
         <tr *ngFor="let department of orgDepts" >
           <td routerLink="/detail/{{department.name}}"><a routerLink="/detail/{{department.name}}">{{department.name}}</a></td>
           <td>{{department.description}}</td>
-          <td>Edit</td>
+          <td></td>
           <td>
-            <a>Delete</a>
+            <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
           </td>
         </tr>
       </tbody>
