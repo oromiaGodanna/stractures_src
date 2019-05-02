@@ -1,9 +1,9 @@
 import { Organization } from './organization.model';
 
 export const Organizations: Organization [] =[
-    new Organization("Organization Name 1", "org01", "private", "Description about this organization"),
-    new Organization("Organization Name 2", "org02", "private", "Description about this organization"),
-    new Organization("Organization Name 3", "org03", "private", "Description about this organization"),
-    new Organization("Organization Name 4", "org04", "private", "Description about this organization"),
-    new Organization("Organization Name 5", "org05", "private", "Description about this organization")
+    new Organization("Organization Name 1", "org01", "private", "Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+    new Organization("Organization Name 2", "org02", "private", "Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+    new Organization("Organization Name 3", "org03", "private", "Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+    new Organization("Organization Name 4", "org04", "private", "Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+    new Organization("Organization Name 5", "org05", "private", "Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 ]
