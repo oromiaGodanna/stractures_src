@@ -9,6 +9,7 @@ import { OrganizationService } from './organization.service';
 export class OrganizationsComponent implements OnInit {
 
   organization_list : Organization[];
+  selectedOrgId : string;
   
   constructor(private organizationService: OrganizationService) { }
 
@@ -18,5 +19,9 @@ export class OrganizationsComponent implements OnInit {
 
   getOrganizations(): void{
     this.organizationService.getOrganizations().subscribe(organization_list => this.organization_list = organization_list)
+  }
+  getId(orgId: string): void{
+    console.log(orgId);
+    this.selectedOrgId = orgId;
   }
 }

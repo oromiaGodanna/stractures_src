@@ -17,14 +17,15 @@
       *ngFor="let org of organization_list"
       [nzHeader]="org.name"
       [nzActive]="false"
-        [nzExtra]="extraTpl"
-        
+      [nzExtra]="extraTpl"
+      (click) = "getId(org.orgId)"
+      
     >
       <p style="margin:0;">
         {{org.description}}
       </p>
+      <button nz-button nzType="default" [routerLink]="['/departments', selectedOrgId]" routerLinkActive="active">Departments</button>
     </nz-collapse-panel>
   </nz-collapse>
   <ng-template #extraTpl>
-     <button nz-button nzType="default">Departments</button>
   </ng-template>
