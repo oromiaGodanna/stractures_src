@@ -13,5 +13,8 @@ export class DepartmentService {
   getDepartments(): Observable<Department[]> {
     return of(Departments);
   }
+  getDepartment(name: string): Observable<Department> {
+    return of(Departments.find(department => department.name === name));
+  }
   
 }
