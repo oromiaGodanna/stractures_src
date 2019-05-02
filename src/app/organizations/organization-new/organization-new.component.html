@@ -1,0 +1,17 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4" [nzOffset]="8"nzRequired nzFor="name">Name</nz-form-label>
+      <nz-form-control [formGroup]="validateForm" [nzSpan]="8" [nzOffset]="4">
+        <input type="text" nz-input formControlName="name" placeholder="Please input your name" />
+        <nz-form-explain *ngIf="validateForm.get('name')?.dirty && validateForm.get('name')?.errors"
+          >Please input your name</nz-form-explain
+        >
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control [nzSpan]="8" [nzOffset]="4">
+          <button nz-button nzType="primary">Check</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
