@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'newOrganization', component: OrganizationNewComponent},
   { path: 'departments/:orgId', component: DepartmentsListComponent},
   { path: 'detail/:name', component: DepartmentDetailComponent },
-  { path: 'new', component : DepartmentNewComponent},
+  { path: 'newDepartment', component : DepartmentNewComponent},
   { path: 'edit/:name', component : DepartmentAlterComponent}
 ];
 
