@@ -6,19 +6,21 @@
   <div nz-col nzSpan="8"></div>
   <div nz-col nzSpan="8">
     <nz-radio-group [(ngModel)]="tableView"  style="margin-top: 25px;">
-            <label nz-radio nzValue= true>Table View</label>
-            <label nz-radio nzValue= false>Tree View</label>
+            <label nz-radio [nzValue]="true">Table View</label>
+            <label nz-radio [nzValue]="false">Tree View</label>
 
           </nz-radio-group>
   </div>
   <div nz-col nzSpan="4">
     <div></div>
       <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;" [routerLink]="['/newDepartment']" routerLinkActive="active">New Department</button>
-
+      
   </div>
+</div>
 
-
+<ng-container *ngIf="tableView;else treeViewBlock">
   <nz-table #basicTable [nzData]="orgDepts">
+
       <thead>
         <tr>
           <th>Department Name</th>
@@ -39,16 +41,18 @@
       </tbody>
     </nz-table>
 
+</ng-container>
+  
+<ng-template #treeViewBlock>
 
-<!-- <ng-template #treeViewBlock>
-
-<div>this is the tree view block</div>
-</ng-template> -->
 
 <nz-tree
-      [nzData]="department"
+      [nzData]="nodes"
       nzDraggable
       (nzOnDrop)="nzEvent($event)">
 </nz-tree>
+</ng-template>
+
+
 
 

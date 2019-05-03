@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class DepartmentsListComponent implements OnInit {
 
    orgId: string;
+   tableView = 'true';
    AllDepartments: Department[];
    orgDepts: Department[] = [];
 
@@ -24,6 +25,7 @@ export class DepartmentsListComponent implements OnInit {
   ngOnInit() {
     this.getDepartments();
     console.log(this.orgDepts);
+    this.tableView =  "true";
   }
 
   getDepartments():any{
