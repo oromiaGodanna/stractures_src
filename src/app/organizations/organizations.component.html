@@ -12,6 +12,7 @@
     </div>
 
 </div>
+<br />
 <nz-collapse>
     <nz-collapse-panel
       *ngFor="let org of organization_list"
@@ -21,11 +22,16 @@
       (click) = "getId(org.orgId)"
       
     >
-      <p style="margin:0;">
+      <p style="margin:0;" >
         {{org.description}}
       </p>
-      <button nz-button nzType="default" [routerLink]="['/departments', selectedOrgId]" routerLinkActive="active">Departments</button>
+      <br />
+      <button nz-button nzType="default" style="align-content: flex-end;" [routerLink]="['/departments', selectedOrgId]" routerLinkActive="active" >Departments</button>
     </nz-collapse-panel>
   </nz-collapse>
   <ng-template #extraTpl>
+      
+          <a nz-popconfirm nzTitle="Are you sure delete this Organization? /n All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
+          ><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+      
   </ng-template>
