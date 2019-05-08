@@ -1,3 +1,32 @@
-<p>
-  department-new works!
-</p>
+
+    <form nz-form [formGroup]= "alterForm" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label>Name</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="text" formControlName="name">
+          <nz-form-explain *ngIf="!alterForm.get('name').valid && alterForm.get('name').touched">Please input name.</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Description</nz-form-label>
+        <nz-form-control>
+          <textarea nz-input type="text" formControlName="description" placeholder="Summary Describing the Department">
+          </textarea>
+          <nz-form-explain *ngIf="!alterForm.get('description').valid && alterForm.get('description').touched">Please input description.</nz-form-explain>
+        </nz-form-control>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="parentName">Managing Department</nz-form-label>
+            <nz-form-control [nzSpan]="10">
+              <nz-select id="parent" formControlName="managingDept" nzShowSearch nzAllowClear
+                nzPlaceHolder="Select a Department">
+                <nz-option *ngFor="let " [nzLabel]="dept.name" [nzValue]="dept.id"></nz-option>
+                <nz-option nzLabel="None" [nzValue] = 0></nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="!alterForm.get('managingDept').valid && alterForm.get('managingDept').touched">
+                This field is required!
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+      </nz-form-item>
+      <button nz-button nzType="primary" type="submit" [disabled]="!alterForm.valid">submit</button>
+    </form>
