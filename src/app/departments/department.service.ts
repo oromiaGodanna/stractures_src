@@ -13,7 +13,7 @@ export class DepartmentService {
   allDepartments = Departments;
   children: Department[] = [];
   deptsUnder: Department[] = [];
-
+  orgDepartments: Department [] = [];
   getDepartments(): Observable<Department[]> {
     return of(Departments);
   }
@@ -22,6 +22,14 @@ export class DepartmentService {
   }
   getDep(name: string): Department {
     return this.allDepartments.find(department => department.name === name);
+  }
+  getDeptsByOrgId(orgID: string): Department[]{
+    this.allDepartments.forEach(department =>{
+      if(department.orgId === orgID){
+        this.orgDepartments.push(department);
+      }
+    })
+    return this.orgDepartments;
   }
   getChildren(id: number): Department[]{
    
@@ -34,7 +42,7 @@ export class DepartmentService {
     });
     return this.children;
   }
-  getManagingDepartment(parentId: number): String{
+  getManagingDepartment(parentId: number): string{
     this.parentName = '';
     this.allDepartments.forEach(department => {
       
@@ -67,8 +75,12 @@ export class DepartmentService {
     this.allDepartments.push(newDepartment);
     
   }
-  deleteDepartment(name: string){
-    var index = this.allDepartments.indexOf(this.getDep(name));
+  getDepById(Id: number) : Department{
+    return this.allDepartments.find(department => department.id === Id);
+  }
+  deleteDepartment(Id: number){
+    var index = this.allDepartments.indexOf(this.getDepById(Id));
     this.allDepartments.splice(index, 1);
+    console.log(this.allDepartments);
   }
 }
