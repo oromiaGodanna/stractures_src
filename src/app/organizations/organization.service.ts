@@ -7,6 +7,9 @@ import { R3FactoryDelegateType } from '@angular/compiler/src/render3/r3_factory'
   providedIn: 'root'
 })
 export class OrganizationService {
+  updateOrganization(id: number, newOrganization: Organization): any {
+    throw new Error("Method not implemented.");
+  }
   AllOrganizations = Organizations;
   
 
@@ -15,6 +18,11 @@ export class OrganizationService {
   }
   getOrganization(orgId: string): Organization{ 
     return this.AllOrganizations.find(organization => organization.orgId == orgId);
+    
+  }
+  
+  addOrganization(newOrganization: Organization){
+    this.AllOrganizations.push(newOrganization);
     
   }
   deleteOrganization(id: string){
