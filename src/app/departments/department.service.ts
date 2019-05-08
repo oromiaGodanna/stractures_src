@@ -63,6 +63,10 @@ export class DepartmentService {
     });
     return this.deptsUnder;
   }
+  addDepartment(newDepartment: Department){
+    this.allDepartments.push(newDepartment);
+    
+  }
   deleteDepartment(name: string){
     var index = this.allDepartments.indexOf(this.getDep(name));
     this.allDepartments.splice(index, 1);
