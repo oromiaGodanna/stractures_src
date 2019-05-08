@@ -12,6 +12,7 @@ export class DepartmentService {
   parentName: string;
   allDepartments = Departments;
   children: Department[] = [];
+  deptsUnder: Department[] = [];
 
   getDepartments(): Observable<Department[]> {
     return of(Departments);
@@ -51,7 +52,17 @@ export class DepartmentService {
     }
     return this.parentName;
   }
-  
+  getDepartmentsUnder(deptId: number){
+    this.deptsUnder = [];
+    this.allDepartments.forEach(department => {
+      
+      if(department.parentId === deptId){
+        
+        this.deptsUnder.push(department);
+      }
+    });
+    return this.deptsUnder;
+  }
   deleteDepartment(name: string){
     var index = this.allDepartments.indexOf(this.getDep(name));
     this.allDepartments.splice(index, 1);
