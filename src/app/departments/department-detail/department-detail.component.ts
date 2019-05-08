@@ -16,8 +16,9 @@ export class DepartmentDetailComponent implements OnInit {
   name:string;
   
   department: Department;
-  parentName: String;
+  parentName: string;
   deptsUnder: Department[];
+  
 
   constructor(private route: ActivatedRoute,
     private departmentService: DepartmentService,
@@ -61,7 +62,7 @@ goBack(): void {
 
   onDelete(): void{
     
-    this.departmentService.deleteDepartment(this.name);
+    this.departmentService.deleteDepartment(this.department.id);
     this.nzMessageService.info('Organization Deleted Successfully. ');
     this.router.navigate(['departments', this.department.orgId]);
     

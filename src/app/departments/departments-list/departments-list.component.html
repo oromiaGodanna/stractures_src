@@ -13,7 +13,7 @@
   </div>
   <div nz-col nzSpan="4">
     <div></div>
-      <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;" [routerLink]="['/newDepartment']" routerLinkActive="active">New Department</button>
+      <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;" [routerLink]="['/newDepartment', orgId]" routerLinkActive="active">New Department</button>
       
   </div>
 </div>
@@ -35,7 +35,8 @@
           <td>{{department.description}}</td>
           <td></td>
           <td>
-            <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+              <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!"  (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
+              ><i nz-icon nzType="delete" (click)="getId(department.id)" nzTheme="outline"></i></a>
           </td>
         </tr>
       </tbody>
@@ -45,12 +46,10 @@
   
 <ng-template #treeViewBlock>
 
-
-<nz-tree
-      [nzData]="nodes"
-      nzDraggable
-      (nzOnDrop)="nzEvent($event)">
-</nz-tree>
+    <div nz-col nzSpan="14" nzOffset="4">
+        <nz-tree [nzData]="nodes" [nzShowLine]="true" [nzSelectedKeys]="defaultSelectedKeys" (nzClick)="nzClick($event)">
+        </nz-tree>
+      </div>
 </ng-template>
 
 

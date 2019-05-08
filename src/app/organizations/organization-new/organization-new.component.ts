@@ -29,12 +29,12 @@ export class OrganizationNewComponent implements OnInit {
     onSubmit(){
       var name = this.newOrganizationForm.value['name'];
       var description = this.newOrganizationForm.value['description'];
-      const newOrg  = new Organization(name, "org"+(Math.random()* (10 - 100) + 1), "gov", description);
+      const newOrg  = new Organization(name, "org"+ (Math.floor(Math.random() * 100) + 10), "gov", description);
       console.log(newOrg);
       this.organizationService.addOrganization(newOrg);
-     this.nzMessageService.info('Organization Deleted Successfully. ');
+     this.nzMessageService.info('Organization Added Successfully. ');
     
-    this.router.navigate(["organizations"]);
+    this.router.navigate(["/organizations"]);
      
     }
   
@@ -50,7 +50,7 @@ export class OrganizationNewComponent implements OnInit {
   // }
   onCancel() {
     
-    this.router.navigate(["organizations"]);
+    this.router.navigate(["/organizations"]);
   }
 
   // // onClear() {

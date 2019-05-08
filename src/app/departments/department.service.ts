@@ -31,6 +31,19 @@ export class DepartmentService {
     })
     return this.orgDepartments;
   }
+  addDepartment(newDepartment: Department){
+    this.allDepartments.push(newDepartment);
+    
+  }
+  getDepById(Id: number) : Department{
+    return this.allDepartments.find(department => department.id === Id);
+  }
+  editDepartment(id:number, newDepartment:Department){
+    console.log("update deparetment");
+    var index = this.allDepartments.indexOf(this.getDepById(id));
+    this.allDepartments[index] = newDepartment;
+    //this.departmentListChanged.next(this.departments.slice());
+  }
   getChildren(id: number): Department[]{
    
     this.allDepartments.forEach(department => {
@@ -71,13 +84,7 @@ export class DepartmentService {
     });
     return this.deptsUnder;
   }
-  addDepartment(newDepartment: Department){
-    this.allDepartments.push(newDepartment);
-    
-  }
-  getDepById(Id: number) : Department{
-    return this.allDepartments.find(department => department.id === Id);
-  }
+
   deleteDepartment(Id: number){
     var index = this.allDepartments.indexOf(this.getDepById(Id));
     this.allDepartments.splice(index, 1);

@@ -12,9 +12,9 @@ const routes: Routes = [
   {path: 'organizations', component:OrganizationsComponent},
   {path: 'newOrganization', component: OrganizationNewComponent},
   { path: 'departments/:orgId', component: DepartmentsListComponent},
-  { path: 'detail/:name', component: DepartmentDetailComponent },
-  { path: 'newDepartment', component : DepartmentNewComponent},
-  { path: 'edit/:name', component : DepartmentAlterComponent}
+  { path: 'detail/:id', component: DepartmentDetailComponent },
+  { path: 'newDepartment/:orgId', component : DepartmentNewComponent},
+  { path: 'edit/:id', component : DepartmentAlterComponent}
 ];
 
 @NgModule({

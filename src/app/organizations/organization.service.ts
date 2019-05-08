@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Organization } from './organization.model';
 import { Organizations } from './organization-mock';
 import { Observable, of } from 'rxjs';
-import { R3FactoryDelegateType } from '@angular/compiler/src/render3/r3_factory';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +20,6 @@ export class OrganizationService {
     return this.AllOrganizations.find(organization => organization.orgId == orgId);
     
   }
-  
   addOrganization(newOrganization: Organization){
     this.AllOrganizations.push(newOrganization);
     
@@ -28,8 +27,7 @@ export class OrganizationService {
   deleteOrganization(id: string){
     var index = this.AllOrganizations.indexOf(this.getOrganization(id));
     this.AllOrganizations.splice(index, 1);
-    //this.departmentService.deleteAllOrganizationDepartments(id);
-    //this.organizationListChanged.next(this.orgnizations.slice());
+
   }
   constructor() { }
 }
