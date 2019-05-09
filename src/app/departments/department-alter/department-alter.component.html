@@ -1,49 +1,48 @@
-
 <nz-breadcrumb style="margin:16px 0px;">
-    <nz-breadcrumb-item>
-      <a [routerLink]="['/organizations']">Home</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a [routerLink]="['/departments', department.orgId]">{{orgName}}</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-        <a [routerLink]="['/edit', department.id]">{{department.name}}</a>
-      </nz-breadcrumb-item>
-  </nz-breadcrumb>
-    <form nz-form [formGroup]= "alterForm" (ngSubmit)="onSubmit()">
-        <nz-form-item>
-          <nz-form-label>Name</nz-form-label>
-          <nz-form-control>
-            <input nz-input type="text" formControlName="name">
-            <nz-form-explain *ngIf="!alterForm.get('name').valid">Please input name.</nz-form-explain>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label>Description</nz-form-label>
-          <nz-form-control>
-            <textarea nz-input type="text" formControlName="description" placeholder="Summary Describing the Department">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/organizations']">Home</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/departments', department.orgId]">{{orgName}}</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/edit', department.id]">{{department.name}}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form [formGroup]="alterForm" (ngSubmit)="onSubmit()">
+  <nz-form-item>
+    <nz-form-label>Name</nz-form-label>
+    <nz-form-control>
+      <input nz-input type="text" formControlName="name">
+      <nz-form-explain *ngIf="!alterForm.get('name').valid">Please input name.</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>Description</nz-form-label>
+    <nz-form-control>
+      <textarea nz-input type="text" formControlName="description" placeholder="Summary Describing the Department">
             </textarea>
-            <nz-form-explain *ngIf="!alterForm.get('description').valid">Please input description.</nz-form-explain>
-          </nz-form-control>
-          <nz-form-item>
-              <nz-form-label  nzFor="parentName">Managing Department</nz-form-label>
-              <nz-form-control>
-                <nz-select id="parent" formControlName="managingDept" nzShowSearch nzAllowClear
-                  nzPlaceHolder="Select a Department">
-                  <nz-option *ngFor="let dept of allDepartments" [nzLabel]="dept.name" [nzValue]="dept.id"></nz-option>
-                  <nz-option nzLabel="None" [nzValue] = 0></nz-option>
-                </nz-select>
-                <nz-form-explain *ngIf="!alterForm.get('managingDept').valid">
-                  This field is required!
-                </nz-form-explain>
-              </nz-form-control>
-            </nz-form-item>
-        </nz-form-item>
-        <button nz-button nzType="primary" type="submit"  style="margin-top: 15px; color:white; background-color:#5C607B;">submit</button>
-        <button nz-button nzType="secondary" type="button" (click)="onCancel()">cancel</button>
-        <button nz-button nzType="secondary" type="button" (click)="onClear()">Clear</button>
-        
-        
+      <nz-form-explain *ngIf="!alterForm.get('description').valid">Please input description.</nz-form-explain>
+    </nz-form-control>
+    <nz-form-item>
+      <nz-form-label nzFor="parentName">Managing Department</nz-form-label>
+      <nz-form-control>
+        <nz-select id="parent" formControlName="managingDept" nzShowSearch nzAllowClear
+          nzPlaceHolder="Select a Department">
+          <nz-option *ngFor="let dept of allDepartments" [nzLabel]="dept.name" [nzValue]="dept.id"></nz-option>
+          <nz-option nzLabel="None" [nzValue]=0></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="!alterForm.get('managingDept').valid">
+          This field is required!
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </nz-form-item>
+  <button nz-button nzType="primary" type="submit"
+    style="margin-top: 15px; color:white; background-color:#5C607B;">submit</button>
+  <button nz-button nzType="secondary" type="bautton" (click)="onCancel()">cancel</button>
+  <button nz-button nzType="secondary" type="button" (click)="onClear()">Clear</button>
 
-      </form>
-  
+
+
+</form>

@@ -1,38 +1,36 @@
 <div nz-row nzSpan="24" style="margin:16px 0px;">
-    <div nz-col nzSpan="4">
-        <h3>Organizations</h3>
-        <h6>List of Organizations</h6>
-    </div>
-    <div nz-col nzSpan="8"></div>
-    <div nz-col nzSpan="8"></div>
-    <div nz-col nzSpan="4">
-      <div></div>
-        <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;"[routerLink]="['/newOrganization']" routerLinkActive="active">New Organization</button>
+  <div nz-col nzSpan="4">
+    <h3>Organizations</h3>
+    <h6>List of Organizations</h6>
+  </div>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="4">
+    <div></div>
+    <button nz-button nzType="default" style="margin-top: 15px; color:white; background-color:#5C607B;"
+      [routerLink]="['/newOrganization']" routerLinkActive="active">New Organization</button>
 
-    </div>
+  </div>
 
 </div>
 <br />
 <nz-collapse>
-    <nz-collapse-panel
-      *ngFor="let org of organization_list"
-      [nzHeader]="org.name"
-      [nzActive]="true"
-      [nzExtra]="extraTpl"
-      (mouseover) = "getId(org.orgId)"
-      
-    >
-      <p style="margin:0;" >
-        {{org.description}}
-      </p>
-      <br />
-      <button nz-button nzType="default" style="align-content: flex-end;" (click) = "getId(org.orgId)" [routerLink]="['/departments', selectedOrgId]" routerLinkActive="active" >Departments</button>
-    </nz-collapse-panel>
-  </nz-collapse>
-  <ng-template #extraTpl>
-      
-          <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
-          ><i nz-icon nzType="delete" nzTheme="outline"></i></a>
-      
-  </ng-template>
-  <nz-pagination [nzPageIndex]="1" [nzTotal]="10" style = "margin: 70%; color:white; background-color:#5C607B;"></nz-pagination>
+  <nz-collapse-panel *ngFor="let org of organization_list" [nzHeader]="org.name" [nzActive]="true" [nzExtra]="extraTpl"
+    (mouseover)="getId(org.orgId)">
+    <p style="margin:0;">
+      {{org.description}}
+    </p>
+    <br />
+    <button nz-button nzType="default" style="align-content: flex-end;" (click)="getId(org.orgId)"
+      [routerLink]="['/departments', selectedOrgId]" routerLinkActive="active">Departments</button>
+  </nz-collapse-panel>
+</nz-collapse>
+<ng-template #extraTpl>
+
+  <a nz-popconfirm
+    nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!"
+    (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+
+</ng-template>
+<nz-pagination [nzPageIndex]="1" [nzTotal]="10" style="margin: 70%; color:white; background-color:#5C607B;">
+</nz-pagination>
