@@ -24,7 +24,7 @@ export class OrganizationsComponent implements OnInit {
     console.log(this.organization_list);
   }
   getId(orgId: string): void{
-    console.log(orgId);
+    // console.log(orgId);
     this.selectedOrgId = orgId;
   }
   onDelete(): void{
