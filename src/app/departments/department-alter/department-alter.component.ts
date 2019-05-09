@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from '../department.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Department } from '../department.model';
+import { OrganizationService } from 'src/app/organizations/organization.service';
 //import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 
 @Component({
@@ -21,7 +22,10 @@ export class DepartmentAlterComponent implements OnInit {
   managingDept: string;
   deptsUnder: Department[];
   allDepartments: Department[];
+  orgName: string;
+
   constructor(private route: ActivatedRoute,private departmentService: DepartmentService,
+    private organizationService: OrganizationService,
                             private nzMessageService: NzMessageService,
                             private router: Router) { }
 
@@ -44,8 +48,13 @@ export class DepartmentAlterComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.department = this.departmentService.getDepById(parseInt(this.id));
     this.allDepartments = this.departmentService.getDeptsByOrgId(this.department.orgId);
+    this.getOrg();
     console.log(this.allDepartments);
   }
+  getOrg(){
+    const org =  this.organizationService.getOrganization(this.department.orgId);
+    this.orgName = org.name;
+   }
   getManagingDept(parentId: number){
 
     this.managingDept = this.departmentService.getManagingDepartment(parentId);
@@ -63,12 +72,12 @@ export class DepartmentAlterComponent implements OnInit {
     const dept = new Department(this.department.id, orgId, managingDep, name, description);
     console.log(dept)
     this.departmentService.editDepartment(this.department.id, dept);
-    this.router.navigate(["/detail", this.name]);
+    this.router.navigate(["/detail", this.id]);
     
   }
   onCancel() {
     
-    this.router.navigate(["/detail", this.name]);
+    this.router.navigate(["/detail", this.id]);
   }
   onClear() {
     this.alterForm.reset();

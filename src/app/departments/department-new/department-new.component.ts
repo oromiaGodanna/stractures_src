@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { Department } from '../department.model';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Organization } from 'src/app/organizations/organization.model';
+import { OrganizationService } from 'src/app/organizations/organization.service';
 //import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 
 @Component({
@@ -20,8 +21,11 @@ export class DepartmentNewComponent implements OnInit {
   tableView = 'true';
   AllDepartments: Department[];
   orgDepts: Department[] = [];
+  orgName:string;
 
   constructor(private route: ActivatedRoute,private departmentService: DepartmentService,
+    private organizationService: OrganizationService,
+
     private nzMessageService: NzMessageService,
       private router: Router,) { }
 
@@ -38,6 +42,7 @@ export class DepartmentNewComponent implements OnInit {
 
   getDepartments():any{
     this.orgId = this.route.snapshot.paramMap.get('orgId');
+    this.getOrg();
     this.departmentService.getDepartments().subscribe(AllDepartments => this.AllDepartments = AllDepartments);
     this.AllDepartments.forEach(department => {
       if(department.orgId === this.orgId){
@@ -46,6 +51,10 @@ export class DepartmentNewComponent implements OnInit {
     });
     
   }
+  getOrg(){
+    const org =  this.organizationService.getOrganization(this.orgId);
+    this.orgName = org.name;
+   }
   onSubmit(){
     var id = Math.floor(Math.random() * 100) + 10;
     var name = this.newDepartmentForm.value['name'];

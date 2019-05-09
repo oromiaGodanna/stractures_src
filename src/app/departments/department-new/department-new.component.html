@@ -1,4 +1,13 @@
 
+<nz-breadcrumb style="margin:16px 0px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/organizations']">Home</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/departments', orgId]">{{orgName}}</a>
+    </nz-breadcrumb-item>
+    
+  </nz-breadcrumb>
     <form nz-form [formGroup]= "newDepartmentForm" (ngSubmit)="onSubmit()">
       <nz-form-item>
         <nz-form-label>Name</nz-form-label>

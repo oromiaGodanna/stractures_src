@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../department.service';
 import { Department } from '../department.model';
+import { OrganizationService } from '../../organizations/organization.service';
 import { map, filter } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd';
@@ -22,14 +23,17 @@ export class DepartmentsListComponent implements OnInit {
    nodes = [];
    root : Department;
    selectedDeptId:number;
+   orgName: string;
   constructor(private route: ActivatedRoute,
     private departmentService: DepartmentService,
+    private organizationService: OrganizationService,
     private location: Location,
     private router: Router,
     private nzMessageService: NzMessageService) { }
 
   ngOnInit() {
     this.getDepartments();
+    this.getOrg();
    // this.getTreeStracture();
     //console.log(this.orgDepts);
     this.tableView =  "true";
@@ -37,6 +41,7 @@ export class DepartmentsListComponent implements OnInit {
 
   getDepartments():any{
     this.orgId = this.route.snapshot.paramMap.get('orgId');
+    console.log(this.orgId)
     this.departmentService.getDepartments().subscribe(AllDepartments => this.AllDepartments = AllDepartments);
     this.AllDepartments.forEach(department => {
       if(department.orgId === this.orgId){
@@ -45,6 +50,10 @@ export class DepartmentsListComponent implements OnInit {
       }
     });
     
+  }
+  getOrg(){
+   const org =  this.organizationService.getOrganization(this.orgId);
+   this.orgName = org.name;
   }
   checkChild(departmentId: number){
     this.children = this.departmentService.getChildren(departmentId);

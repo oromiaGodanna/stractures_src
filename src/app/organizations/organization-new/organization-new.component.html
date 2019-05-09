@@ -1,23 +1,30 @@
 
-    <form nz-form [formGroup]= "newOrganizationForm" (ngSubmit)="onSubmit()">
-        <nz-form-item>
-          <nz-form-label>Name</nz-form-label>
-          <nz-form-control>
-            <input nz-input type="text" formControlName="name">
-            <nz-form-explain *ngIf="!newOrganizationForm.get('name').valid && newOrganizationForm.get('name').touched">Please input name.</nz-form-explain>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label>Description</nz-form-label>
-          <nz-form-control>
-            <textarea nz-input type="text" formControlName="description" placeholder="Summary Describing the Department">
-            </textarea>
-            <nz-form-explain *ngIf="!newOrganizationForm.get('description').valid && newOrganizationForm.get('description').touched">Please input description.</nz-form-explain>
-          </nz-form-control>
-          
-        </nz-form-item>
-        <button nz-button nzType="primary" type="submit" [disabled]="!newOrganizationForm.valid">submit</button>
-        <button nz-button nzType="secondary" type="submit" (click)="onCancel()">cancel</button>
+<nz-breadcrumb style="margin:16px 0px;">
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/organizations']">Home</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/newOrganization']"></a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form [formGroup]= "newOrganizationForm" (ngSubmit)="onSubmit()">
+  <nz-form-item>
+    <nz-form-label>Name</nz-form-label>
+    <nz-form-control>
+      <input nz-input type="text" formControlName="name">
+      <nz-form-explain *ngIf="!newOrganizationForm.get('name').valid && newOrganizationForm.get('name').touched">Please input name.</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>Description</nz-form-label>
+    <nz-form-control>
+      <textarea nz-input type="text" formControlName="description" placeholder="Summary Describing the Department">
+      </textarea>
+      <nz-form-explain *ngIf="!newOrganizationForm.get('description').valid && newOrganizationForm.get('description').touched">Please input description.</nz-form-explain>
+    </nz-form-control>
+    
+  </nz-form-item>
+  <button nz-button nzType="primary" type="submit" [disabled]="!newOrganizationForm.valid" style="margin-top: 15px; color:white; background-color:#5C607B;">submit</button>
+  <button nz-button nzType="secondary" type="submit" (click)="onCancel()">cancel</button>
 
-      </form>
-  
+</form>

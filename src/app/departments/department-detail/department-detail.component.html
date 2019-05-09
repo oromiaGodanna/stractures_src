@@ -1,3 +1,16 @@
+
+<nz-breadcrumb style="margin:16px 0px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/organizations']">Home</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/departments', department.orgId]">{{orgName}}</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <a [routerLink]="['/detail', department.id]">{{department.name}}</a>
+      </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
 <div *ngIf="department">
 
   <nz-card style="width:900px;" nzTitle="{{department.name | uppercase}}  Details" [nzExtra]="extraTemplate">
@@ -9,7 +22,7 @@
         <nz-list *ngFor="let depts of deptsUnder"
           
         >
-        <a (click)="ngOnInit()" routerLink="/detail/{{depts.name}}" routerLinkActive="active">
+        <a (click)="ngOnInit()" routerLink="/detail/{{depts.id}}" routerLinkActive="active">
           <nz-list-item>{{depts.name}}</nz-list-item>
         </a>
         </nz-list>
@@ -32,7 +45,7 @@
 
     <!-- <i nz-icon nzType="arrow-left" nzTheme="outline" (click)="goBack()"></i> -->
     <button nz-button nzType="secondary" routerLink="/edit/{{department.id}}">Edit</button>
-    <a nz-popconfirm nzTitle="Are you sure delete this Organization? /n All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
+    <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
           ><button nz-button nzType="danger" >Delete</button></a>
 </div>
 <!-- <h2>{{department.name | uppercase}} Details</h2>

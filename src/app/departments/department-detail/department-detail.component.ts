@@ -3,6 +3,7 @@ import { Department } from '../department.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { DepartmentService } from '../department.service';
+import { OrganizationService } from '../../organizations/organization.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Subscription } from 'rxjs';
 
@@ -13,15 +14,16 @@ import { Subscription } from 'rxjs';
 })
 export class DepartmentDetailComponent implements OnInit {
 
-  name:string;
+  id:number;
   
   department: Department;
   parentName: string;
   deptsUnder: Department[];
-  
+  orgName:string;
 
   constructor(private route: ActivatedRoute,
     private departmentService: DepartmentService,
+    private organizationService: OrganizationService,
     private router: Router,
     private location: Location,
     private nzMessageService: NzMessageService
@@ -30,14 +32,14 @@ export class DepartmentDetailComponent implements OnInit {
 
     this.route.params.subscribe(
       (params: Params) => {
-        this.name = params['name'];
-        this.department = this.departmentService.getDep(this.name);
+        this.id = parseInt(params['id']);
+        this.department = this.departmentService.getDepById(this.id);
         this.parentName = this.departmentService.getManagingDepartment(this.department.parentId);
         this.getDepartmentsUnder(this.department.id);
       });
     
+   this.getOrg();
    
-    console.log(this.deptsUnder)
 }
 
 // getDepartment(): void {
@@ -55,6 +57,10 @@ getManagingDept(parentId: number){
 getDepartmentsUnder(deptId: number){
   this.deptsUnder = this.departmentService.getDepartmentsUnder(deptId);
 }
+getOrg(){
+  const org =  this.organizationService.getOrganization(this.department.orgId);
+  this.orgName = org.name;
+ }
 goBack(): void {
   this.location.back();
 }
