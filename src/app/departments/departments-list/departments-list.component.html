@@ -45,8 +45,9 @@
           <td>{{department.description}}</td>
           <td></td>
           <td>
-              <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!"  (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
-              ><i nz-icon nzType="delete" (click)="getId(department.id)" nzTheme="outline"></i></a>
+              <i nz-icon nzType="edit" routerLink="/edit/{{department.id}}" nzTheme="outline"></i>
+              <!-- <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!"  (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
+              ><i nz-icon nzType="delete" (click)="getId(department.id)" nzTheme="outline"></i></a> -->
           </td>
         </tr>
       </tbody>
