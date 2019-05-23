@@ -14,12 +14,12 @@ import { Subscription } from 'rxjs';
 })
 export class DepartmentDetailComponent implements OnInit {
 
-  id: number;
-
+  id:number;
+  
   department: Department;
   parentName: string;
   deptsUnder: Department[];
-  orgName: string;
+  orgName:string;
 
   constructor(private route: ActivatedRoute,
     private departmentService: DepartmentService,
@@ -27,7 +27,7 @@ export class DepartmentDetailComponent implements OnInit {
     private router: Router,
     private location: Location,
     private nzMessageService: NzMessageService
-  ) { }
+    ) { }
   ngOnInit() {
 
     this.route.params.subscribe(
@@ -37,41 +37,41 @@ export class DepartmentDetailComponent implements OnInit {
         this.parentName = this.departmentService.getManagingDepartment(this.department.parentId);
         this.getDepartmentsUnder(this.department.id);
       });
+    
+   this.getOrg();
+   
+}
 
-    this.getOrg();
+// getDepartment(): void {
+//   const name = this.route.snapshot.paramMap.get('name');
+//   this.name = name;
+//   this.departmentService.getDepartment(name).subscribe(department => this.department = department);
+//   this.department = this.departmentService.getDep(name);
+// }
 
-  }
+getManagingDept(parentId: number){
 
-  // getDepartment(): void {
-  //   const name = this.route.snapshot.paramMap.get('name');
-  //   this.name = name;
-  //   this.departmentService.getDepartment(name).subscribe(department => this.department = department);
-  //   this.department = this.departmentService.getDep(name);
-  // }
-
-  getManagingDept(parentId: number) {
-
-    this.parentName = this.departmentService.getManagingDepartment(parentId);
-    return this.parentName;
-  }
-  getDepartmentsUnder(deptId: number) {
-    this.deptsUnder = this.departmentService.getDepartmentsUnder(deptId);
-  }
-  getOrg() {
-    const org = this.organizationService.getOrganization(this.department.orgId);
-    this.orgName = org.name;
-  }
-  goBack(): void {
-    this.location.back();
-  }
+  this.parentName = this.departmentService.getManagingDepartment(parentId);
+  return this.parentName;
+}
+getDepartmentsUnder(deptId: number){
+  this.deptsUnder = this.departmentService.getDepartmentsUnder(deptId);
+}
+getOrg(){
+  const org =  this.organizationService.getOrganization(this.department.orgId);
+  this.orgName = org.name;
+ }
+goBack(): void {
+  this.location.back();
+}
 
 
-  onDelete(): void {
-
+  onDelete(): void{
+    
     this.departmentService.deleteDepartment(this.department.id);
     this.nzMessageService.info('Organization Deleted Successfully. ');
     this.router.navigate(['departments', this.department.orgId]);
-
+    
   }
   onCancel(): void {
     this.nzMessageService.info('Task canceled.');

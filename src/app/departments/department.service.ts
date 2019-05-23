@@ -13,7 +13,7 @@ export class DepartmentService {
   allDepartments = Departments;
   children: Department[] = [];
   deptsUnder: Department[] = [];
-  orgDepartments: Department[] = [];
+  orgDepartments: Department [] = [];
   getDepartments(): Observable<Department[]> {
     return of(Departments);
   }
@@ -23,31 +23,31 @@ export class DepartmentService {
   getDep(name: string): Department {
     return this.allDepartments.find(department => department.name === name);
   }
-  getDeptsByOrgId(orgID: string): Department[] {
-    this.allDepartments.forEach(department => {
-      if (department.orgId === orgID) {
+  getDeptsByOrgId(orgID: string): Department[]{
+    this.allDepartments.forEach(department =>{
+      if(department.orgId === orgID){
         this.orgDepartments.push(department);
       }
     })
     return this.orgDepartments;
   }
-  addDepartment(newDepartment: Department) {
+  addDepartment(newDepartment: Department){
     this.allDepartments.push(newDepartment);
-
+    
   }
-  getDepById(Id: number): Department {
+  getDepById(Id: number) : Department{
     return this.allDepartments.find(department => department.id === Id);
   }
-  editDepartment(id: number, newDepartment: Department) {
+  editDepartment(id:number, newDepartment:Department){
     console.log("update deparetment");
     var index = this.allDepartments.indexOf(this.getDepById(id));
     this.allDepartments[index] = newDepartment;
     //this.departmentListChanged.next(this.departments.slice());
   }
-  getChildren(id: number): Department[] {
-
+  getChildren(id: number): Department[]{
+   
     this.allDepartments.forEach(department => {
-      if (department.parentId === id) {
+      if(department.parentId === id){
         this.children.push(department);
         console.log(department.name);
       }
@@ -55,37 +55,37 @@ export class DepartmentService {
     });
     return this.children;
   }
-  getManagingDepartment(parentId: number): string {
+  getManagingDepartment(parentId: number): string{
     this.parentName = '';
     this.allDepartments.forEach(department => {
-
-      if (department.id === parentId) {
+      
+      if(department.id === parentId){
         console.log('department.id', department.id);
         console.log(parentId)
-        this.parentName = department.name;
+        this.parentName =  department.name;
         console.log(this.parentName);
-
+     
 
       }
     });
-    if (this.parentName === '') {
+    if(this.parentName === ''){
       this.parentName = 'None';
     }
     return this.parentName;
   }
-  getDepartmentsUnder(deptId: number) {
+  getDepartmentsUnder(deptId: number){
     this.deptsUnder = [];
     this.allDepartments.forEach(department => {
-
-      if (department.parentId === deptId) {
-
+      
+      if(department.parentId === deptId){
+        
         this.deptsUnder.push(department);
       }
     });
     return this.deptsUnder;
   }
 
-  deleteDepartment(Id: number) {
+  deleteDepartment(Id: number){
     var index = this.allDepartments.indexOf(this.getDepById(Id));
     this.allDepartments.splice(index, 1);
     console.log(this.allDepartments);

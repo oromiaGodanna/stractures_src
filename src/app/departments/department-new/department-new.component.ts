@@ -21,12 +21,13 @@ export class DepartmentNewComponent implements OnInit {
   tableView = 'true';
   AllDepartments: Department[];
   orgDepts: Department[] = [];
-  orgName: string;
+  orgName:string;
 
-  constructor(private route: ActivatedRoute, private departmentService: DepartmentService,
+  constructor(private route: ActivatedRoute,private departmentService: DepartmentService,
     private organizationService: OrganizationService,
+
     private nzMessageService: NzMessageService,
-    private router: Router, ) { }
+      private router: Router,) { }
 
   ngOnInit() {
     this.getDepartments();
@@ -36,40 +37,40 @@ export class DepartmentNewComponent implements OnInit {
       description: new FormControl('', Validators.required),
       managingDept: new FormControl('', Validators.required)
     });
-
+    
   }
 
-  getDepartments(): any {
+  getDepartments():any{
     this.orgId = this.route.snapshot.paramMap.get('orgId');
     this.getOrg();
     this.departmentService.getDepartments().subscribe(AllDepartments => this.AllDepartments = AllDepartments);
     this.AllDepartments.forEach(department => {
-      if (department.orgId === this.orgId) {
+      if(department.orgId === this.orgId){
         this.orgDepts.push(department);
       }
     });
-
+    
   }
-  getOrg() {
-    const org = this.organizationService.getOrganization(this.orgId);
+  getOrg(){
+    const org =  this.organizationService.getOrganization(this.orgId);
     this.orgName = org.name;
-  }
-  onSubmit() {
+   }
+  onSubmit(){
     var id = Math.floor(Math.random() * 100) + 10;
     var name = this.newDepartmentForm.value['name'];
     var description = this.newDepartmentForm.value['description'];
     var managingDept = this.newDepartmentForm.value['managingDept'];
     console.log(name, description, managingDept);
-
-    const dept = new Department(id, this.orgId, managingDept, name, description);
+ 
+    const dept  = new Department(id, this.orgId, managingDept, name, description);
     this.departmentService.addDepartment(dept);
     this.nzMessageService.info('Organization Added Successfully.');
-
+    
     this.router.navigate(["/departments", this.orgId]);
-
+   
   }
   onCancel() {
-
+    
     this.router.navigate(["/departments", this.orgId]);
   }
 

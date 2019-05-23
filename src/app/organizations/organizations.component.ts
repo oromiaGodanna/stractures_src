@@ -10,25 +10,25 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class OrganizationsComponent implements OnInit {
 
-  organization_list: Organization[];
-  selectedOrgId: string;
-
+  organization_list : Organization[];
+  selectedOrgId : string;
+  
   constructor(private organizationService: OrganizationService, private nzMessageService: NzMessageService) { }
 
   ngOnInit() {
     this.getOrganizations();
   }
 
-  getOrganizations(): void {
+  getOrganizations(): void{
     this.organizationService.getOrganizations().subscribe(organization_list => this.organization_list = organization_list)
     console.log(this.organization_list);
   }
-  getId(orgId: string): void {
+  getId(orgId: string): void{
     // console.log(orgId);
     this.selectedOrgId = orgId;
   }
-  onDelete(): void {
-
+  onDelete(): void{
+    
     this.organizationService.deleteOrganization(this.selectedOrgId);
     this.nzMessageService.info('Organization Deleted Successfully. ');
   }
@@ -36,7 +36,7 @@ export class OrganizationsComponent implements OnInit {
     this.nzMessageService.info('Task canceled.');
   }
 
-
-
-
+  
+   
+  
 }
