@@ -1,12 +1,17 @@
-<nz-layout class="layout">
-    <nz-header nzTitle="Organizations" nzSubtitle="List of organizations"style="color: white;background-color: #5C607B;">
+<nz-layout class="layout" style="line-height: 100px;">
+    <nz-header nzTitle="Organizations" nzSubtitle="List of organizations"style="line-height: 100px; color: white;background-color: #5C607B;">
       <div class="logo">
           </div>
-      <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" style="line-height: 64px; background: #5C607B;">
-        <li nz-menu-item ></li>
-        <li nz-menu-item></li>
-        <li nz-menu-item></li>
-      </ul>
+          <div nz-row>
+              <div nz-col nzSpan="17" nzOffset="3">
+                <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" style=" color: white; line-height: 63px; background: #5C607B;">
+                    <li nz-menu-item [routerLink]="['/organizations']" routerLinkActive="active" style="color: white;" >Home</li>
+                    <li nz-menu-item [routerLink]="['/organizations']" routerLinkActive="active" style="color: white;">All Organizations</li>
+                    <li nz-menu-item></li>
+                  
+                </ul>
+              </div>
+              </div>
     </nz-header>
     </nz-layout>
     
