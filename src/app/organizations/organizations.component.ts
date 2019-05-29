@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Organization } from './organization.model';
 import { OrganizationService } from './organization.service';
 import { NzMessageService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-organizations',
@@ -13,7 +14,9 @@ export class OrganizationsComponent implements OnInit {
   organization_list : Organization[];
   selectedOrgId : string;
   
-  constructor(private organizationService: OrganizationService, private nzMessageService: NzMessageService) { }
+  constructor(private organizationService: OrganizationService, 
+    private router: Router,
+    private nzMessageService: NzMessageService) { }
 
   ngOnInit() {
     this.getOrganizations();
@@ -31,6 +34,11 @@ export class OrganizationsComponent implements OnInit {
     
     this.organizationService.deleteOrganization(this.selectedOrgId);
     this.nzMessageService.info('Organization Deleted Successfully. ');
+    console.log(this.organization_list);
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    //this.router.navigate(["/organizations"]);
   }
   onCancel(): void {
     this.nzMessageService.info('Task canceled.');

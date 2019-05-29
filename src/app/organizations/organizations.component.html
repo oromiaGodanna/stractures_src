@@ -13,6 +13,10 @@
 
 </div>
 <br />
+<hr style="color :#5C607B" />
+<br />
+
+<!-- 
 <nz-collapse>
     <nz-collapse-panel
       *ngFor="let org of organization_list"
@@ -37,4 +41,36 @@
           ><i nz-icon nzType="delete" nzTheme="outline"></i></a>
       
   </ng-template>
-  <nz-pagination [nzPageIndex]="1" [nzTotal]="10" style = "margin: 70%; color:white; background-color:#5C607B;"></nz-pagination>
+  <nz-pagination [nzPageIndex]="1" [nzTotal]="10" style = "margin: 70%; color:white; background-color:#5C607B;"></nz-pagination> -->
+
+
+  <nz-list
+      [nzDataSource]="organization_list"
+      [nzItemLayout]="'vertical'"
+      [nzRenderItem]="item"
+      [nzPagination]="pagination"
+      [nzFooter]="footer"
+     
+    >
+    <ng-template #item let-item>
+      <nz-list-item data-cy="orgList" [nzContent]="item.content" [nzActions]="[departments, msgAction]" [nzExtra]="extra">
+        
+        <ng-template #departments><button data-cy = "departmentsBtn"nz-button nzType="default" style="align-content: flex-end;"  [routerLink]="['/departments', item.orgId]" routerLinkActive="active" >Departments</button></ng-template>
+        <ng-template #msgAction><a nz-popconfirm data-cy="popconfirm" nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!" (click)="getId(item.orgId)" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
+                  >         <i nz-icon nzType="delete" nzTheme="outline"></i></a> </ng-template>
+        
+        <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.description">
+            
+          <ng-template #nzTitle
+            ><a [routerLink]="['/departments', item.orgId]" routerLinkActive="active">{{ item.name }}</a></ng-template
+          >
+        </nz-list-item-meta>
+        
+      </nz-list-item>
+    </ng-template>
+      
+      <ng-template #pagination>
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+      </ng-template>
+    </nz-list>
+  `
