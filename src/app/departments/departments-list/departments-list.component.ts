@@ -35,10 +35,12 @@ export class DepartmentsListComponent implements OnInit {
   ngOnInit() {
     this.getDepartments();
     this.tableView =  true;
-    this.getOrg();
-   this.getTreeStracture();
-    //console.log(this.orgDepts);
-    
+    console.log(this.orgDepts);
+    if (this.orgDepts.length != 0){
+        this.getOrg();
+      this.getTreeStracture();
+        //console.log(this.orgDepts);
+    }
   }
 
   getDepartments():any{
