@@ -16,8 +16,8 @@
   <div nz-col nzSpan="8"></div>
   <div nz-col nzSpan="8">
     <nz-radio-group [(ngModel)]="tableView"  style="margin-top: 25px;">
-            <label nz-radio [nzValue]="true">Table View</label>
-            <label nz-radio [nzValue]="false">Tree View</label>
+            <label nz-radio [nzValue]='true'>Table View</label>
+            <label nz-radio [nzValue]='false'>Tree View</label>
 
           </nz-radio-group>
   </div>
@@ -57,11 +57,13 @@
   
 <ng-template #treeViewBlock>
 
-    <div nz-col nzSpan="14" nzOffset="4">
+    <div nz-col nzSpan="14" nzOffset="4" *ngIf="orgDepts!= []">
         <nz-tree [nzData]="nodes" [nzShowLine]="true" [nzSelectedKeys]="defaultSelectedKeys" (nzClick)="nzClick($event)">
         </nz-tree>
       </div>
 </ng-template>
+
+
 
 
 
