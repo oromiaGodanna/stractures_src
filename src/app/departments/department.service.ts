@@ -47,7 +47,7 @@ export class DepartmentService {
   getChildren(id: number): Department[]{
    
     this.allDepartments.forEach(department => {
-      if(department.parentId === id){
+      if(department.parentId == id){
         this.children.push(department);
         console.log(department.name);
       }
