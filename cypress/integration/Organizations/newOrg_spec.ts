@@ -1,4 +1,11 @@
 describe('new Organization Test', () => {
+    before(function () {
+        // runs once before all tests in the block
+      })
+    
+      after(function () {
+        // runs once after all tests in the block
+      })
     
     beforeEach(() =>  {
         cy.visit('http://localhost:4200/newOrganization')
