@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from '../department.service';
+import { Location } from '@angular/common';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Department } from '../department.model';
 import { OrganizationService } from 'src/app/organizations/organization.service';
@@ -18,16 +19,17 @@ export class DepartmentAlterComponent implements OnInit {
   id: string;
   department: Department;
   name: string;
-  description:string;
+  description: string;
   managingDept: string;
   deptsUnder: Department[];
   allDepartments: Department[];
   orgName: string;
 
-  constructor(private route: ActivatedRoute,private departmentService: DepartmentService,
+  constructor(private route: ActivatedRoute, private departmentService: DepartmentService,
     private organizationService: OrganizationService,
-                            private nzMessageService: NzMessageService,
-                            private router: Router) { }
+    private nzMessageService: NzMessageService,
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit() {
     this.getDepartment();
@@ -35,35 +37,35 @@ export class DepartmentAlterComponent implements OnInit {
     console.log(this.managingDept);
     this.name = this.department.name;
     this.description = this.department.description;
-    
+
     this.alterForm = new FormGroup({
       name: new FormControl(this.name, Validators.required),
       description: new FormControl(this.description, Validators.required),
       managingDept: new FormControl(this.managingDept, Validators.required),
-      deptsUnder : new FormControl('', Validators.required)
+      deptsUnder: new FormControl('', Validators.required)
     });
-    
+
   }
-  getDepartment(){
+  getDepartment() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.department = this.departmentService.getDepById(parseInt(this.id));
     this.allDepartments = this.departmentService.getDeptsByOrgId(this.department.orgId);
     this.getOrg();
     console.log(this.allDepartments);
   }
-  getOrg(){
-    const org =  this.organizationService.getOrganization(this.department.orgId);
+  getOrg() {
+    const org = this.organizationService.getOrganization(this.department.orgId);
     this.orgName = org.name;
-   }
-  getManagingDept(parentId: number){
+  }
+  getManagingDept(parentId: number) {
 
     this.managingDept = this.departmentService.getManagingDepartment(parentId);
     return this.managingDept;
   }
-  getDepartmentsUnder(deptId: number){
+  getDepartmentsUnder(deptId: number) {
     this.deptsUnder = this.departmentService.getDepartmentsUnder(deptId);
   }
-  onSubmit(){
+  onSubmit() {
     var orgId = this.department.orgId;
     var name = this.alterForm.value['name'];
     var description = this.alterForm.value['description'];
@@ -73,11 +75,15 @@ export class DepartmentAlterComponent implements OnInit {
     console.log(dept)
     this.departmentService.editDepartment(this.department.id, dept);
     this.router.navigate(["/detail", this.id]);
-    
+
   }
+  goBack(): void {
+    this.location.back();
+  }
+
   onCancel() {
-    
-    this.router.navigate(["/detail", this.id]);
+
+    this.goBack();
   }
   onClear() {
     this.alterForm.reset();

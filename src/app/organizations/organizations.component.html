@@ -7,7 +7,7 @@
     <div nz-col nzSpan="8"></div>
     <div nz-col nzSpan="4">
       <div></div>
-        <button nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;"[routerLink]="['/newOrganization']" routerLinkActive="active">New Organization</button>
+        <button data-cy="newOrg"nz-button nzType="default"  style="margin-top: 15px; color:white; background-color:#5C607B;"[routerLink]="['/newOrganization']" routerLinkActive="active">New Organization</button>
 
     </div>
 
@@ -49,7 +49,7 @@
       [nzItemLayout]="'vertical'"
       [nzRenderItem]="item"
       [nzPagination]="pagination"
-      [nzFooter]="footer"
+      
      
     >
     <ng-template #item let-item>

@@ -1,52 +1,53 @@
-
 <nz-breadcrumb style="margin:16px 0px;">
-    <nz-breadcrumb-item>
-      <a [routerLink]="['/organizations']">Home</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-      <a [routerLink]="['/departments', department.orgId]">{{orgName}}</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item>
-        <a [routerLink]="['/detail', department.id]">{{department.name}}</a>
-      </nz-breadcrumb-item>
-  </nz-breadcrumb>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/organizations']">Home</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/departments', department.orgId]">{{orgName}}</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a [routerLink]="['/detail', department.id]">{{department.name}}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 
-<div *ngIf="department">
+<div *ngIf="department" style="min-height:900px;">
 
-  <nz-card style="width:900px;" nzTitle="{{department.name | uppercase}}  Details" [nzExtra]="extraTemplate">
-      <p>Name: {{department.name}}</p>
-      <p>Description: {{department.description}}</p>
-      <p>Managing Department: {{ parentName }}</p>
-      <h6>Departments Under:</h6>
-      <div >
-        <nz-list *ngFor="let depts of deptsUnder"
-          
-        >
+  <nz-card style="width:900px; min-height: 300px;" nzTitle="{{department.name | uppercase}}  Details"
+    [nzExtra]="extraTemplate">
+    <p><strong>Name: </strong> {{department.name}}</p>
+    <p><strong>Description: </strong>{{department.description}}</p>
+    <p><strong>Managing Department: </strong>{{ parentName }}</p>
+    <h4>Departments Under:</h4>
+    <div *ngIf="deptsUnder.length != 0; else none">
+      <nz-list *ngFor="let depts of deptsUnder">
         <a (click)="ngOnInit()" routerLink="/detail/{{depts.id}}" routerLinkActive="active">
           <nz-list-item>{{depts.name}}</nz-list-item>
         </a>
-        </nz-list>
-      </div>
-    </nz-card>
-    <ng-template #none>
-      <nz-list>
-        <nz-list-item>
-          None
-        </nz-list-item>
       </nz-list>
-    </ng-template>
-    <ng-template #extraTemplate>
-      <a><i nz-icon nzType="edit" nzTheme="outline" routerLink="/edit/{{department.id}}"></i></a>
-      <div nz-col nzSpan="0"></div>
-      <a nz-popconfirm nzTitle="Are you sure delete this Organization? /n All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
-          ><i nz-icon nzType="delete" nzTheme="outline"></i></a>
-    
-    </ng-template>
+    </div>
+  </nz-card>
+  <ng-template #none>
+    <nz-list>
+      <nz-list-item>
+        <pre>
+               None</pre>
+      </nz-list-item>
+    </nz-list>
+  </ng-template>
+  <ng-template #extraTemplate>
+    <a><i nz-icon nzType="edit" nzTheme="outline" routerLink="/edit/{{department.id}}"></i></a>
+    <div nz-col nzSpan="0"></div>
+    <a nz-popconfirm
+      nzTitle="Are you sure delete this Organization? /n All departments under will be removed if you confirm!"
+      (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"><i nz-icon nzType="delete" nzTheme="outline"></i></a>
 
-    <!-- <i nz-icon nzType="arrow-left" nzTheme="outline" (click)="goBack()"></i> -->
-    <button nz-button nzType="secondary" routerLink="/edit/{{department.id}}">Edit</button>
-    <a nz-popconfirm nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!" (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"
-          ><button nz-button nzType="danger" >Delete</button></a>
+  </ng-template>
+
+  <!-- <i nz-icon nzType="arrow-left" nzTheme="outline" (click)="goBack()"></i> -->
+  <button nz-button nzType="secondary" routerLink="/edit/{{department.id}}">Edit</button>
+  <a nz-popconfirm
+    nzTitle="Are you sure delete this Organization? All departments under will be removed if you confirm!"
+    (nzOnConfirm)="onDelete()" (nzOnCancel)="onCancel()"><button nz-button nzType="danger">Delete</button></a>
 </div>
 <!-- <h2>{{department.name | uppercase}} Details</h2>
 <div>Name: {{department.name}}</div>
